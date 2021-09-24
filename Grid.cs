@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Biosphere
 {
@@ -11,25 +12,38 @@ namespace Biosphere
     {
         public int tileSize { get; private set; }
         public int tileCount { get; private set; }
-        public List<List<Tile>> tiles { get; private set; }
+        public Tile[,] tiles { get; private set; }
 
-        public Grid(int sz, int numTl)
+        public Grid(int sz, int numTl, float scale)
         {
             tileSize = sz;
             tileCount = numTl;
-            this.tiles = new List<List<Tile>>(numTl);
-            for(int i = 0; i < numTl; i++)
+            tiles = new Tile[numTl, numTl];
+            Random rand = new Random();
+            SimplexNoise.Noise.Seed = rand.Next();
+            float[,] noiseValues = SimplexNoise.Noise.Calc2D(numTl, numTl, scale);
+
+            for (int i = 0; i < numTl; i++)
             {
-                List<Tile> tempTiles = new List<Tile>(numTl);
                 for(int j = 0; j < numTl; j++)
                 {
-                    Random rand = new Random();
-                    Point p = new Point(i * (tileSize + 3) + 5, j * (tileSize + 3) + 5);
+                    Point p = new Point(i * (tileSize + 1) + 1, j * (tileSize + 1) + 1);
                     Size s = new Size(tileSize, tileSize);
-                    Rectangle rect = new Rectangle(p, s);
-                    tempTiles.Add(new Tile(rand.Next(0, 3), rect));
+                    int tileVal = 0;
+                    if (noiseValues[i, j] < 40)
+                    {
+                        tileVal = 0;
+                    }
+                    else if (noiseValues[i, j] < 155)
+                    {
+                        tileVal = 1;
+                    }
+                    else
+                    {
+                        tileVal = 2;
+                    }
+                    tiles[i, j] = new Tile(tileVal, p, s);
                 }
-                this.tiles.Add(tempTiles);
             }
         }
 

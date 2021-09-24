@@ -4,48 +4,41 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Biosphere
 {
     enum TileState
     {
-        Barren = 0,
-        Grass = 1,
-        Water = 2
+        Water = 0,
+        Sand = 1,
+        Grass = 2,
     }
 
     class Tile
     {
         public TileState state { get; private set; }
-        Color c;
-        Rectangle rect;
-        Brush b;
+        public Rectangle rect { get; private set; }
 
-        public Tile(int st, Rectangle rect)
+        public Tile(int st, Point p, Size s)
         {
+            rect = new Rectangle(p, s);
             state = (TileState)st;
-            this.rect = rect;
-            c = Color.Black;
+        }
+
+        public Color getColor()
+        {
             switch (state)
             {
                 case (TileState)0:
-                    c = Color.SandyBrown;
-                    break;
+                    return Color.SandyBrown;
                 case (TileState)1:
-                    c = Color.ForestGreen;
-                    break;
+                    return Color.ForestGreen;
                 case (TileState)2:
-                    c = Color.DeepSkyBlue;
-                    break;
+                    return Color.DeepSkyBlue;
                 default:
-                    break;
+                    return Color.Black;
             }
-            b = new SolidBrush(c);
-        }
-
-        public void Draw(Graphics g)
-        {
-            g.FillRectangle(b, rect);
         }
     }
 }

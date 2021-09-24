@@ -22,11 +22,11 @@ namespace Biosphere
         void canvasPaint(Grid grid)
         {
             g = canvas.CreateGraphics();
-            foreach (List<Tile> row in grid.tiles)
+            if(grid != null)
             {
-                foreach (Tile tile in row)
+                foreach (Tile tile in grid.tiles)
                 {
-                    tile.Draw(g);
+                    g.FillRectangle(new SolidBrush(tile.getColor()), tile.rect);
                 }
             }
         }
@@ -37,9 +37,17 @@ namespace Biosphere
             {
                 g.Clear(this.BackColor);
             }
-            int numTiles = int.Parse(tbGridSize.Text);
-            grid = new Grid(25, numTiles);
-            canvasPaint(grid);
+            if(tbGridSize.Text != "")
+            {
+                int numTiles = int.Parse(tbGridSize.Text);
+                float scale = 0.0335f;
+                if (tbFloat.Text != String.Empty)
+                {
+                    scale = float.Parse(tbFloat.Text);
+                }
+                grid = new Grid(20, numTiles, scale);
+                canvasPaint(grid);
+            }
         }
 
         private void btn_Clear_Click(object sender, EventArgs e)
