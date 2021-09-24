@@ -14,8 +14,11 @@ namespace Biosphere
         public int tileCount { get; private set; }
         public Tile[,] tiles { get; private set; }
 
+        public List<Animal> animals { get; private set; }
+
         public Grid(int sz, int numTl, float scale)
         {
+            animals = new List<Animal>();
             tileSize = sz;
             tileCount = numTl;
             tiles = new Tile[numTl, numTl];
@@ -27,7 +30,7 @@ namespace Biosphere
             {
                 for(int j = 0; j < numTl; j++)
                 {
-                    Point p = new Point(i * (tileSize + 1) + 1, j * (tileSize + 1) + 1);
+                    Point p = new Point(i * (tileSize + 1) + 5, j * (tileSize + 1) + 5);
                     Size s = new Size(tileSize, tileSize);
                     int tileVal = 0;
                     if (noiseValues[i, j] < 40)
@@ -47,5 +50,15 @@ namespace Biosphere
             }
         }
 
+        public void CleanUp()
+        {
+            tiles = new Tile[0,0];
+            animals.Clear();
+        }
+
+        public void AddAnimal(Animal an)
+        {
+            animals.Add(an);
+        }
     }
 }

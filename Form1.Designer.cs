@@ -37,12 +37,20 @@ namespace Biosphere
             this.canvas = new System.Windows.Forms.Panel();
             this.tbFloat = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnPutZebra = new System.Windows.Forms.Button();
+            this.btnPutLion = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tbTileSize = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel1.Controls.Add(this.tbTileSize);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.btnPutLion);
+            this.panel1.Controls.Add(this.btnPutZebra);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.tbFloat);
             this.panel1.Controls.Add(this.btn_Clear);
@@ -97,6 +105,7 @@ namespace Biosphere
             // 
             this.canvas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.canvas.Location = new System.Drawing.Point(0, 100);
+            this.canvas.Margin = new System.Windows.Forms.Padding(5);
             this.canvas.Name = "canvas";
             this.canvas.Size = new System.Drawing.Size(778, 409);
             this.canvas.TabIndex = 1;
@@ -104,7 +113,7 @@ namespace Biosphere
             // 
             // tbFloat
             // 
-            this.tbFloat.Location = new System.Drawing.Point(93, 40);
+            this.tbFloat.Location = new System.Drawing.Point(92, 40);
             this.tbFloat.Name = "tbFloat";
             this.tbFloat.Size = new System.Drawing.Size(100, 20);
             this.tbFloat.TabIndex = 5;
@@ -118,6 +127,42 @@ namespace Biosphere
             this.label2.Size = new System.Drawing.Size(74, 16);
             this.label2.TabIndex = 6;
             this.label2.Text = "Float Val:";
+            // 
+            // btnPutZebra
+            // 
+            this.btnPutZebra.Location = new System.Drawing.Point(280, 11);
+            this.btnPutZebra.Name = "btnPutZebra";
+            this.btnPutZebra.Size = new System.Drawing.Size(75, 24);
+            this.btnPutZebra.TabIndex = 7;
+            this.btnPutZebra.Text = "Add Zebra";
+            this.btnPutZebra.UseVisualStyleBackColor = true;
+            this.btnPutZebra.Click += new System.EventHandler(this.btnPutZebra_Click);
+            // 
+            // btnPutLion
+            // 
+            this.btnPutLion.Location = new System.Drawing.Point(280, 38);
+            this.btnPutLion.Name = "btnPutLion";
+            this.btnPutLion.Size = new System.Drawing.Size(75, 23);
+            this.btnPutLion.TabIndex = 8;
+            this.btnPutLion.Text = "Add Lion";
+            this.btnPutLion.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(11, 67);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(73, 16);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Tile Size:";
+            // 
+            // tbTileSize
+            // 
+            this.tbTileSize.Location = new System.Drawing.Point(92, 66);
+            this.tbTileSize.Name = "tbTileSize";
+            this.tbTileSize.Size = new System.Drawing.Size(100, 20);
+            this.tbTileSize.TabIndex = 10;
             // 
             // Form1
             // 
@@ -144,6 +189,10 @@ namespace Biosphere
         private System.Windows.Forms.Button btn_Clear;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbFloat;
+        private System.Windows.Forms.Button btnPutLion;
+        private System.Windows.Forms.Button btnPutZebra;
+        private System.Windows.Forms.TextBox tbTileSize;
+        private System.Windows.Forms.Label label3;
     }
 }
 
